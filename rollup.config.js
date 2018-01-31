@@ -9,7 +9,7 @@ const production = !process.env.ROLLUP_WATCH;
 export default [{
 	input: 'src/mp4/index.js',
 	output: {
-		file: 'docs/js/mse.min.js',
+		file: 'docs/js/segmp4.js',
 		format: 'iife', // immediately-invoked function expression — suitable for <script> tags
 		sourcemap: true
 	},
@@ -21,7 +21,7 @@ export default [{
 },{
 	input: 'src/flv/index.js',
 	output: {
-		file: 'docs/js/flv.min.js',
+		file: 'docs/js/flv.js',
 		format: 'iife', // immediately-invoked function expression — suitable for <script> tags
 		sourcemap: true
 	},

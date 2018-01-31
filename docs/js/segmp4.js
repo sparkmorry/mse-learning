@@ -70,4 +70,4 @@ function createlog(text) {
 }
 
 }());
-//# sourceMappingURL=mse.min.js.map
+//# sourceMappingURL=segmp4.js.map

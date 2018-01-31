@@ -33,4 +33,4 @@ function onMediaSourceOpen() {
 }
 
 }());
-//# sourceMappingURL=flv.min.js.map
+//# sourceMappingURL=flv.js.map
