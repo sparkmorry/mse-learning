@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  .log, .vlog{
+    float: left;
+    max-height: 500px;
+    width: 400px;
+    overflow-y: scroll;
+  }
+  .video{
+    width: 400px;
+    float: left;
+  }
+  *{
+    margin: 0;
+    padding: 0;
+  }
+</style>
+</head>
+<body>
+<div>
+  <button onclick="load()">初始化信息</button>
+  <button onclick="loadmore()">加载buffer</button>
+</div>
+<div class="video">
+  <video id="video" controls autoplay width="400"></video>
+</div>
+
+<div class="log">
+  <h4>日志</h4>
+  <div id="log"></div>
+</div>
+<div class="vlog">
+  <h4>播放器日志</h4>
+  <div id="vlog"></div>
+</div>
+<script src="js/mse.min.js"></script>
+</body>
+</html>

@@ -11,3 +11,7 @@ function GET(url, callback) {
   };
   xhr.send();
 }
+
+export default {
+  GET
+}

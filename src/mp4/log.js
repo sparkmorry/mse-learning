@@ -1,4 +1,6 @@
 var $vlog = document.getElementById('vlog');
+var $video = document.getElementById('video');
+
 var loadstart = 0,
   loadedmetadata = 0;
 var eventTester = function(e) {

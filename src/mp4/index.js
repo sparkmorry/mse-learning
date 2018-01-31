@@ -1,4 +1,7 @@
-// var videoUrl = 'http://tbfliving.alicdn.com/mediaplatform/ce3456e6-1916-48dc-b4cf-c1d9204c4a2e_2.m3u8';
+import './log';
+import utils from '../common/utils';
+
+
 var baseUrl = 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/video/720_2400000/dash';
 var ms = new MediaSource();
 var sourceBuffer;
@@ -16,7 +19,7 @@ function onMediaSourceOpen() {
 
 function load() {
   createlog(`正在加载初始化信息...`);
-  GET(`${baseUrl}/init.mp4`, function(videoChunk) {
+  utils.GET(`${baseUrl}/init.mp4`, function(videoChunk) {
     sourceBuffer = ms.addSourceBuffer('video/mp4; codecs="avc1.4d401f"');
     if (videoChunk) {
       sourceBuffer.appendBuffer(new Uint8Array(videoChunk));
@@ -36,7 +39,7 @@ function loadmore() {
   }
   requesting = true;
   createlog(`正在请求片段${i}...`);
-  GET(`${baseUrl}/segment_${i}.m4s`, function(videoChunk) {
+  utils.GET(`${baseUrl}/segment_${i}.m4s`, function(videoChunk) {
     if (videoChunk) {
       sourceBuffer.appendBuffer(new Uint8Array(videoChunk));
       i++;
