@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>H.265 video play</title>
+    <style>
+      .terminal-header {
+        padding-top: 15px;
+      }
+      #input {
+        width: 80%;
+        padding: 4px;
+      }
+      #run {
+        width: 15%
+      }
+      #output {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+      #output.closed {
+        max-height: 200px;
+        overflow-y: scroll;
+      }
+      .btn{
+        width: 100px;
+        text-align: center;
+        background-color: #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 10px;
+        display: inline-block;
+        margin-right: 20px;
+      }
+      .video{
+        width: 600px;
+      }
+    </style>
+    <script type="text/javascript" src="./libde265.min.js"></script>
+  </head>
+<body>
+
+  <div class="container-fluid">
+    <div class='content'>
+      <div class='inner-content'>
+        <video src="hd_265.mp4" controls></video>
+        <canvas class="video" id="video" width="0" height="0"></canvas>
+        <audio id="audio" controls src=""></audio>
+        <div>
+          <div onclick="getHEVC()" class="btn">获取hevc</div>
+          <div onclick="getMP3()" class="btn">获取MP3</div>
+          <div id="play" class="btn">播放</div>
+        </div>  
+        <div id="files"></div>
+        <div id="status"></div>
+      </div>
+      <div>
+        <div class="terminal-header">
+          <input id="input" value="-help" />
+          <button id="run" class="plain-button">Run Command</button>
+          <img id="image-loader" src="./load.gif" />
+        </div>
+        <pre id="output">Loading JavaScript files (it may take a minute)</pre>
+      </div>
+    </div>
+
+  </div>
+  <script type='text/javascript' src='h265.js'></script>
+</body>
+</html>
