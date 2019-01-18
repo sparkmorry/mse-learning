@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   function loadWASM() {
@@ -221,7 +221,7 @@
             //   byteLength: this._receivedLength
             // };
 
-          // this.emit('dataArrival', buffer);
+            // this.emit('dataArrival', buffer);
           } else {
             if (this.requestAbort === true) {
               this.requestAbort = false;
@@ -250,8 +250,21 @@
   // even though Rollup is bundling all your files together, errors and
   // logs will still point to your original source modules
   console.log('if you have sourcemaps enabled in your devtools, click on main.js:5 -->');
+  let tipDom = document.getElementById('tip');
+
   loadWASM().then(wam => {
-    Module.onRuntimeInitialized = function() {
+    Module.onRuntimeInitialized = function () {
+      tipDom.innerHTML = 'wasm加载完成，解码中…';
+      let offset = Module._malloc(buffer.length);
+      console.log(offset);
+      Module.HEAP8.set(buffer, offset);
+      // 好像单线程啊！！！会等执行完。。。
+      Module._videox_decoder_init(offset, buffer.length);
+      tipDom.innerHTML = '解码完成…播放中';
+      setInterval(() => {
+        const ptr = framePtrList.shift();
+        draw(ptr);
+      }, 40);  
       // setFile = Module.cwrap('setFile', 'number', ['number', 'number', 'number']);
     };
   });
@@ -265,7 +278,7 @@
   });
 
   let memCanvas = document.createElement('canvas'),
-    memContext = memCanvas.getContext('2d');
+  memContext = memCanvas.getContext('2d');
   let canvas = document.querySelector('#canvas'),
     ctx = canvas.getContext('2d');
   canvas.width = Math.max(600, window.innerWidth - 40);
@@ -273,10 +286,10 @@
     let imageData = ctx.createImageData(width, height);
     let k = 0;
     for (let i = 0; i < buffer.length; i++) {
-      if (i && i % 3 === 0) {
-        imageData.data[k++] = 255;
-      }
-      imageData.data[k++] = buffer[i];
+        if (i && i % 3 === 0) {
+            imageData.data[k++] = 255;
+        }
+        imageData.data[k++] = buffer[i];
     }
     imageData.data[k] = 255;
     memCanvas.width = width;
@@ -307,24 +320,6 @@
     Module._free(ptr);
     Module._free(imgBufferPtr);
   };
-
-
-  let playBtn = document.querySelector('#play');
-  let tipDom = document.getElementById('tip');
-  setTimeout(() => {
-    tipDom.innerHTML = 'wasm加载完成，解码中…';
-    let offset = Module._malloc(buffer.length);
-    console.log(offset);
-    Module.HEAP8.set(buffer, offset);
-    // 好像单线程啊！！！会等执行完。。。
-    Module._videox_decoder_init(offset, buffer.length);
-    tipDom.innerHTML = '解码完成…播放中';
-    setInterval(() => {
-      const ptr = framePtrList.shift();
-      draw(ptr);
-    }, 40);
-  // draw(offset, 0);
-  }, 2 * 1000);
 
 }());
 //# sourceMappingURL=bundle.js.map
