@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   function loadWASM() {
@@ -221,7 +221,7 @@
             //   byteLength: this._receivedLength
             // };
 
-            // this.emit('dataArrival', buffer);
+          // this.emit('dataArrival', buffer);
           } else {
             if (this.requestAbort === true) {
               this.requestAbort = false;
@@ -251,13 +251,13 @@
   // logs will still point to your original source modules
   console.log('if you have sourcemaps enabled in your devtools, click on main.js:5 -->');
   loadWASM().then(wam => {
-    Module.onRuntimeInitialized = function () {
+    Module.onRuntimeInitialized = function() {
       // setFile = Module.cwrap('setFile', 'number', ['number', 'number', 'number']);
     };
   });
 
   const loader = new FetchLoader();
-  loader.open('http://gw.alicdn.com/bao/uploaded/TB1UVT4AVzqK1RjSZFCXXbbxVXa.mp4');
+  loader.open('https://sparkmorry.github.io/mse-learning/h265/hd_265.mp4');
 
   let buffer;
   loader.on('loadComplete', (e) => {
@@ -265,7 +265,7 @@
   });
 
   let memCanvas = document.createElement('canvas'),
-  memContext = memCanvas.getContext('2d');
+    memContext = memCanvas.getContext('2d');
   let canvas = document.querySelector('#canvas'),
     ctx = canvas.getContext('2d');
   canvas.width = Math.max(600, window.innerWidth - 40);
@@ -273,10 +273,10 @@
     let imageData = ctx.createImageData(width, height);
     let k = 0;
     for (let i = 0; i < buffer.length; i++) {
-        if (i && i % 3 === 0) {
-            imageData.data[k++] = 255;
-        }
-        imageData.data[k++] = buffer[i];
+      if (i && i % 3 === 0) {
+        imageData.data[k++] = 255;
+      }
+      imageData.data[k++] = buffer[i];
     }
     imageData.data[k] = 255;
     memCanvas.width = width;
@@ -322,8 +322,8 @@
     setInterval(() => {
       const ptr = framePtrList.shift();
       draw(ptr);
-    }, 40);  
-    // draw(offset, 0);
+    }, 40);
+  // draw(offset, 0);
   }, 2 * 1000);
 
 }());
