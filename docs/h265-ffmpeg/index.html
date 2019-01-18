@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head lang='en'>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width'>
+	<title>rollup-starter-app</title>
+
+	<style>
+		body {
+			font-family: 'Helvetica Neue', Arial, sans-serif;
+			color: #333;
+			font-weight: 300;
+		}
+	</style>
+</head>
+<body>
+	<form>
+		<p>H.265播放（ffmpeg软解）</p>
+		<p>http://gw.alicdn.com/bao/uploaded/TB1UVT4AVzqK1RjSZFCXXbbxVXa.mp4</p>
+    <!-- <input type="text" value="http://gw.alicdn.com/bao/uploaded/TB1UVT4AVzqK1RjSZFCXXbbxVXa.mp4" name="file"> -->
+	</form>
+	<p id="tip">解码中……</p>
+	<!-- <button id="play">播放</button> -->
+	<!--这个canvas用来画导出的图像-->
+	<canvas width="600" height="400" id="canvas"></canvas>
+	<!-- <script src='videox-decoder-video-wasm.js'></script> -->
+	<script src='bundle.js'></script>
+
+</body>
+</html>
